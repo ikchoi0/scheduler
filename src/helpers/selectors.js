@@ -17,5 +17,22 @@ function getInterview(state, interview) {
       }
     : null;
 }
+function getInterviewersForDay(state, day) {
+  const appointmentDay = state.days.find((element) => {
+    return element.name === day;
+  });
+  if (state.days.length === 0 || !appointmentDay) {
+    return [];
+  }
+  const interviewers = [];
+  const appointments = appointmentDay.appointments;
+  appointments.forEach((appointment) => {
+    const interview = state.appointments[appointment].interview;
+    if (interview) {
+      interviewers.push(state.interviewers[Number(interview.interviewer)]);
+    }
+  });
+  return interviewers;
+}
 
-export { getAppointmentsForDay, getInterview };
+export { getAppointmentsForDay, getInterview, getInterviewersForDay };
