@@ -21,18 +21,10 @@ function getInterviewersForDay(state, day) {
   const appointmentDay = state.days.find((element) => {
     return element.name === day;
   });
-  if (state.days.length === 0 || !appointmentDay) {
+  if (state.days.length === 0 || !appointmentDay || !appointmentDay.interviewers) {
     return [];
   }
-  const interviewers = [];
-  const appointments = appointmentDay.appointments;
-  appointments.forEach((appointment) => {
-    const interview = state.appointments[appointment].interview;
-    if (interview) {
-      interviewers.push(state.interviewers[Number(interview.interviewer)]);
-    }
-  });
-  return interviewers;
+  return appointmentDay.interviewers.map(interviewer => state.interviewers[interviewer]);
 }
 
 export { getAppointmentsForDay, getInterview, getInterviewersForDay };
