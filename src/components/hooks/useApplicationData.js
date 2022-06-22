@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import axios from "axios";
 const WEEKDAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 const SET_DAY = "SET_DAY";
@@ -43,9 +43,7 @@ export default function useApplicationData() {
     appointments: {},
     interviewers: {},
   });
-
   const setDay = (day) => dispatch({ type: SET_DAY, day });
-
   useEffect(() => {
     Promise.all([
       axios.get("/api/days"),
@@ -63,7 +61,7 @@ export default function useApplicationData() {
   return {
     state,
     setDay,
-    bookInterview: (id, interview) => {
+    bookInterview: (id, interview, mode) => {
       const appointment = {
         ...state.appointments[id],
         interview: interview,
@@ -72,23 +70,26 @@ export default function useApplicationData() {
       return axios
         .put(`/api/appointments/${id}`, appointment)
         .then((response) => {
-          const updatedDays = updateSpots(state, true);
+          const updatedDays = updateSpots(state, true, mode);
           dispatch({ type: SET_INTERVIEW, id: id, interview, updatedDays });
         });
     },
-    cancelInterview: (id) => {
+    cancelInterview: (id, mode) => {
       return axios.delete(`/api/appointments/${id}`).then(() => {
-        const updatedDays = updateSpots(state);
+        const updatedDays = updateSpots(state, false, mode);
         dispatch({ type: SET_INTERVIEW, id, interview: null, updatedDays });
       });
     },
   };
 }
-const updateSpots = (state, onBook = false) => {
+const updateSpots = (state, onBook = false, mode) => {
   const dayIndex = WEEKDAYS.indexOf(state.day);
   const newDays = [...state.days];
-  newDays[dayIndex].spots = onBook
+  console.log(mode);
+  if(mode !== "EDIT"){
+    newDays[dayIndex].spots = onBook
     ? newDays[dayIndex].spots - 1
     : newDays[dayIndex].spots + 1;
-  return newDays;
+  }
+    return newDays;
 };

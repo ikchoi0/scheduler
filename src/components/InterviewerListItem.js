@@ -18,7 +18,3 @@ export default function InterviewerListItem(props) {
     </li>
   );
 }
-
-function displayName (props) {
-  return props.selected ? props.name : "";
-}
