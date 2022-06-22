@@ -85,11 +85,10 @@ export default function useApplicationData() {
 const updateSpots = (state, onBook = false, mode) => {
   const dayIndex = WEEKDAYS.indexOf(state.day);
   const newDays = [...state.days];
-  console.log(mode);
-  if(mode !== "EDIT"){
+  if (mode !== "EDIT") {
     newDays[dayIndex].spots = onBook
-    ? newDays[dayIndex].spots - 1
-    : newDays[dayIndex].spots + 1;
+      ? newDays[dayIndex].spots - 1
+      : newDays[dayIndex].spots + 1;
   }
-    return newDays;
+  return newDays;
 };

@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from "react";
 
 export default function useVisualMode(initial) {
   const [modeHistory, setModeHistory] = useState([initial]);
@@ -24,6 +24,6 @@ export default function useVisualMode(initial) {
     },
     clear: () => {
       setModeHistory(["EMPTY"]);
-    }
+    },
   };
 }

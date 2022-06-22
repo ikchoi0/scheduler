@@ -21,10 +21,16 @@ function getInterviewersForDay(state, day) {
   const appointmentDay = state.days.find((element) => {
     return element.name === day;
   });
-  if (state.days.length === 0 || !appointmentDay || !appointmentDay.interviewers) {
+  if (
+    state.days.length === 0 ||
+    !appointmentDay ||
+    !appointmentDay.interviewers
+  ) {
     return [];
   }
-  return appointmentDay.interviewers.map(interviewer => state.interviewers[interviewer]);
+  return appointmentDay.interviewers.map(
+    (interviewer) => state.interviewers[interviewer]
+  );
 }
 
 export { getAppointmentsForDay, getInterview, getInterviewersForDay };
