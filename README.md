@@ -21,3 +21,8 @@ npm test
 ```sh
 npm run storybook
 ```
+## Screenshots
+![Scheduler](/scheduler/docs/01.png)
+![Scheduler](/scheduler/docs/02.png)
+![Scheduler](/scheduler/docs/03.png)
+![Scheduler](/scheduler/docs/04.png)
