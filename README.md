@@ -22,7 +22,7 @@ npm test
 npm run storybook
 ```
 ## Screenshots
-![Scheduler](/scheduler/docs/01.png)
-![Scheduler](/scheduler/docs/02.png)
-![Scheduler](/scheduler/docs/03.png)
-![Scheduler](/scheduler/docs/04.png)
+![Scheduler](./docs/01.png)
+![Scheduler](./docs/02.png)
+![Scheduler](./docs/03.png)
+![Scheduler](./docs/04.png)
